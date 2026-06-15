@@ -14,7 +14,7 @@ T _$identity<T>(T value) => value;
 /// @nodoc
 mixin _$CurrencyState {
 
- String get fromCurrency; String get toCurrency; double get amount; ConversionResult? get currentResult; List<RateHistoryPoint> get rateHistory; List<ConversionResult> get conversionHistory; Status get convertStatus; Status get historyStatus; Status get saveStatus;
+ String get fromCurrency; String get toCurrency; double get amount; ConversionResult? get currentResult; List<RateHistoryPoint> get rateHistory; List<ConversionResult> get conversionHistory; Status get convertStatus; Status get historyStatus; Status get saveStatus; RateSourceType get rateSource;
 /// Create a copy of CurrencyState
 /// with the given fields replaced by the non-null parameter values.
 @JsonKey(includeFromJson: false, includeToJson: false)
@@ -25,16 +25,16 @@ $CurrencyStateCopyWith<CurrencyState> get copyWith => _$CurrencyStateCopyWithImp
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is CurrencyState&&(identical(other.fromCurrency, fromCurrency) || other.fromCurrency == fromCurrency)&&(identical(other.toCurrency, toCurrency) || other.toCurrency == toCurrency)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currentResult, currentResult) || other.currentResult == currentResult)&&const DeepCollectionEquality().equals(other.rateHistory, rateHistory)&&const DeepCollectionEquality().equals(other.conversionHistory, conversionHistory)&&(identical(other.convertStatus, convertStatus) || other.convertStatus == convertStatus)&&(identical(other.historyStatus, historyStatus) || other.historyStatus == historyStatus)&&(identical(other.saveStatus, saveStatus) || other.saveStatus == saveStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is CurrencyState&&(identical(other.fromCurrency, fromCurrency) || other.fromCurrency == fromCurrency)&&(identical(other.toCurrency, toCurrency) || other.toCurrency == toCurrency)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currentResult, currentResult) || other.currentResult == currentResult)&&const DeepCollectionEquality().equals(other.rateHistory, rateHistory)&&const DeepCollectionEquality().equals(other.conversionHistory, conversionHistory)&&(identical(other.convertStatus, convertStatus) || other.convertStatus == convertStatus)&&(identical(other.historyStatus, historyStatus) || other.historyStatus == historyStatus)&&(identical(other.saveStatus, saveStatus) || other.saveStatus == saveStatus)&&(identical(other.rateSource, rateSource) || other.rateSource == rateSource));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,fromCurrency,toCurrency,amount,currentResult,const DeepCollectionEquality().hash(rateHistory),const DeepCollectionEquality().hash(conversionHistory),convertStatus,historyStatus,saveStatus);
+int get hashCode => Object.hash(runtimeType,fromCurrency,toCurrency,amount,currentResult,const DeepCollectionEquality().hash(rateHistory),const DeepCollectionEquality().hash(conversionHistory),convertStatus,historyStatus,saveStatus,rateSource);
 
 @override
 String toString() {
-  return 'CurrencyState(fromCurrency: $fromCurrency, toCurrency: $toCurrency, amount: $amount, currentResult: $currentResult, rateHistory: $rateHistory, conversionHistory: $conversionHistory, convertStatus: $convertStatus, historyStatus: $historyStatus, saveStatus: $saveStatus)';
+  return 'CurrencyState(fromCurrency: $fromCurrency, toCurrency: $toCurrency, amount: $amount, currentResult: $currentResult, rateHistory: $rateHistory, conversionHistory: $conversionHistory, convertStatus: $convertStatus, historyStatus: $historyStatus, saveStatus: $saveStatus, rateSource: $rateSource)';
 }
 
 
@@ -45,7 +45,7 @@ abstract mixin class $CurrencyStateCopyWith<$Res>  {
   factory $CurrencyStateCopyWith(CurrencyState value, $Res Function(CurrencyState) _then) = _$CurrencyStateCopyWithImpl;
 @useResult
 $Res call({
- String fromCurrency, String toCurrency, double amount, ConversionResult? currentResult, List<RateHistoryPoint> rateHistory, List<ConversionResult> conversionHistory, Status convertStatus, Status historyStatus, Status saveStatus
+ String fromCurrency, String toCurrency, double amount, ConversionResult? currentResult, List<RateHistoryPoint> rateHistory, List<ConversionResult> conversionHistory, Status convertStatus, Status historyStatus, Status saveStatus, RateSourceType rateSource
 });
 
 
@@ -62,7 +62,7 @@ class _$CurrencyStateCopyWithImpl<$Res>
 
 /// Create a copy of CurrencyState
 /// with the given fields replaced by the non-null parameter values.
-@pragma('vm:prefer-inline') @override $Res call({Object? fromCurrency = null,Object? toCurrency = null,Object? amount = null,Object? currentResult = freezed,Object? rateHistory = null,Object? conversionHistory = null,Object? convertStatus = null,Object? historyStatus = null,Object? saveStatus = null,}) {
+@pragma('vm:prefer-inline') @override $Res call({Object? fromCurrency = null,Object? toCurrency = null,Object? amount = null,Object? currentResult = freezed,Object? rateHistory = null,Object? conversionHistory = null,Object? convertStatus = null,Object? historyStatus = null,Object? saveStatus = null,Object? rateSource = null,}) {
   return _then(_self.copyWith(
 fromCurrency: null == fromCurrency ? _self.fromCurrency : fromCurrency // ignore: cast_nullable_to_non_nullable
 as String,toCurrency: null == toCurrency ? _self.toCurrency : toCurrency // ignore: cast_nullable_to_non_nullable
@@ -73,7 +73,8 @@ as List<RateHistoryPoint>,conversionHistory: null == conversionHistory ? _self.c
 as List<ConversionResult>,convertStatus: null == convertStatus ? _self.convertStatus : convertStatus // ignore: cast_nullable_to_non_nullable
 as Status,historyStatus: null == historyStatus ? _self.historyStatus : historyStatus // ignore: cast_nullable_to_non_nullable
 as Status,saveStatus: null == saveStatus ? _self.saveStatus : saveStatus // ignore: cast_nullable_to_non_nullable
-as Status,
+as Status,rateSource: null == rateSource ? _self.rateSource : rateSource // ignore: cast_nullable_to_non_nullable
+as RateSourceType,
   ));
 }
 /// Create a copy of CurrencyState
@@ -197,10 +198,10 @@ return $default(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String fromCurrency,  String toCurrency,  double amount,  ConversionResult? currentResult,  List<RateHistoryPoint> rateHistory,  List<ConversionResult> conversionHistory,  Status convertStatus,  Status historyStatus,  Status saveStatus)?  $default,{required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>(TResult Function( String fromCurrency,  String toCurrency,  double amount,  ConversionResult? currentResult,  List<RateHistoryPoint> rateHistory,  List<ConversionResult> conversionHistory,  Status convertStatus,  Status historyStatus,  Status saveStatus,  RateSourceType rateSource)?  $default,{required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case _CurrencyState() when $default != null:
-return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentResult,_that.rateHistory,_that.conversionHistory,_that.convertStatus,_that.historyStatus,_that.saveStatus);case _:
+return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentResult,_that.rateHistory,_that.conversionHistory,_that.convertStatus,_that.historyStatus,_that.saveStatus,_that.rateSource);case _:
   return orElse();
 
 }
@@ -218,10 +219,10 @@ return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentRe
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String fromCurrency,  String toCurrency,  double amount,  ConversionResult? currentResult,  List<RateHistoryPoint> rateHistory,  List<ConversionResult> conversionHistory,  Status convertStatus,  Status historyStatus,  Status saveStatus)  $default,) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>(TResult Function( String fromCurrency,  String toCurrency,  double amount,  ConversionResult? currentResult,  List<RateHistoryPoint> rateHistory,  List<ConversionResult> conversionHistory,  Status convertStatus,  Status historyStatus,  Status saveStatus,  RateSourceType rateSource)  $default,) {final _that = this;
 switch (_that) {
 case _CurrencyState():
-return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentResult,_that.rateHistory,_that.conversionHistory,_that.convertStatus,_that.historyStatus,_that.saveStatus);case _:
+return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentResult,_that.rateHistory,_that.conversionHistory,_that.convertStatus,_that.historyStatus,_that.saveStatus,_that.rateSource);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -238,10 +239,10 @@ return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentRe
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String fromCurrency,  String toCurrency,  double amount,  ConversionResult? currentResult,  List<RateHistoryPoint> rateHistory,  List<ConversionResult> conversionHistory,  Status convertStatus,  Status historyStatus,  Status saveStatus)?  $default,) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>(TResult? Function( String fromCurrency,  String toCurrency,  double amount,  ConversionResult? currentResult,  List<RateHistoryPoint> rateHistory,  List<ConversionResult> conversionHistory,  Status convertStatus,  Status historyStatus,  Status saveStatus,  RateSourceType rateSource)?  $default,) {final _that = this;
 switch (_that) {
 case _CurrencyState() when $default != null:
-return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentResult,_that.rateHistory,_that.conversionHistory,_that.convertStatus,_that.historyStatus,_that.saveStatus);case _:
+return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentResult,_that.rateHistory,_that.conversionHistory,_that.convertStatus,_that.historyStatus,_that.saveStatus,_that.rateSource);case _:
   return null;
 
 }
@@ -253,7 +254,7 @@ return $default(_that.fromCurrency,_that.toCurrency,_that.amount,_that.currentRe
 
 
 class _CurrencyState implements CurrencyState {
-  const _CurrencyState({required this.fromCurrency, required this.toCurrency, required this.amount, required this.currentResult, required final  List<RateHistoryPoint> rateHistory, required final  List<ConversionResult> conversionHistory, required this.convertStatus, required this.historyStatus, required this.saveStatus}): _rateHistory = rateHistory,_conversionHistory = conversionHistory;
+  const _CurrencyState({required this.fromCurrency, required this.toCurrency, required this.amount, required this.currentResult, required final  List<RateHistoryPoint> rateHistory, required final  List<ConversionResult> conversionHistory, required this.convertStatus, required this.historyStatus, required this.saveStatus, required this.rateSource}): _rateHistory = rateHistory,_conversionHistory = conversionHistory;
   
 
 @override final  String fromCurrency;
@@ -277,6 +278,7 @@ class _CurrencyState implements CurrencyState {
 @override final  Status convertStatus;
 @override final  Status historyStatus;
 @override final  Status saveStatus;
+@override final  RateSourceType rateSource;
 
 /// Create a copy of CurrencyState
 /// with the given fields replaced by the non-null parameter values.
@@ -288,16 +290,16 @@ _$CurrencyStateCopyWith<_CurrencyState> get copyWith => __$CurrencyStateCopyWith
 
 @override
 bool operator ==(Object other) {
-  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CurrencyState&&(identical(other.fromCurrency, fromCurrency) || other.fromCurrency == fromCurrency)&&(identical(other.toCurrency, toCurrency) || other.toCurrency == toCurrency)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currentResult, currentResult) || other.currentResult == currentResult)&&const DeepCollectionEquality().equals(other._rateHistory, _rateHistory)&&const DeepCollectionEquality().equals(other._conversionHistory, _conversionHistory)&&(identical(other.convertStatus, convertStatus) || other.convertStatus == convertStatus)&&(identical(other.historyStatus, historyStatus) || other.historyStatus == historyStatus)&&(identical(other.saveStatus, saveStatus) || other.saveStatus == saveStatus));
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is _CurrencyState&&(identical(other.fromCurrency, fromCurrency) || other.fromCurrency == fromCurrency)&&(identical(other.toCurrency, toCurrency) || other.toCurrency == toCurrency)&&(identical(other.amount, amount) || other.amount == amount)&&(identical(other.currentResult, currentResult) || other.currentResult == currentResult)&&const DeepCollectionEquality().equals(other._rateHistory, _rateHistory)&&const DeepCollectionEquality().equals(other._conversionHistory, _conversionHistory)&&(identical(other.convertStatus, convertStatus) || other.convertStatus == convertStatus)&&(identical(other.historyStatus, historyStatus) || other.historyStatus == historyStatus)&&(identical(other.saveStatus, saveStatus) || other.saveStatus == saveStatus)&&(identical(other.rateSource, rateSource) || other.rateSource == rateSource));
 }
 
 
 @override
-int get hashCode => Object.hash(runtimeType,fromCurrency,toCurrency,amount,currentResult,const DeepCollectionEquality().hash(_rateHistory),const DeepCollectionEquality().hash(_conversionHistory),convertStatus,historyStatus,saveStatus);
+int get hashCode => Object.hash(runtimeType,fromCurrency,toCurrency,amount,currentResult,const DeepCollectionEquality().hash(_rateHistory),const DeepCollectionEquality().hash(_conversionHistory),convertStatus,historyStatus,saveStatus,rateSource);
 
 @override
 String toString() {
-  return 'CurrencyState(fromCurrency: $fromCurrency, toCurrency: $toCurrency, amount: $amount, currentResult: $currentResult, rateHistory: $rateHistory, conversionHistory: $conversionHistory, convertStatus: $convertStatus, historyStatus: $historyStatus, saveStatus: $saveStatus)';
+  return 'CurrencyState(fromCurrency: $fromCurrency, toCurrency: $toCurrency, amount: $amount, currentResult: $currentResult, rateHistory: $rateHistory, conversionHistory: $conversionHistory, convertStatus: $convertStatus, historyStatus: $historyStatus, saveStatus: $saveStatus, rateSource: $rateSource)';
 }
 
 
@@ -308,7 +310,7 @@ abstract mixin class _$CurrencyStateCopyWith<$Res> implements $CurrencyStateCopy
   factory _$CurrencyStateCopyWith(_CurrencyState value, $Res Function(_CurrencyState) _then) = __$CurrencyStateCopyWithImpl;
 @override @useResult
 $Res call({
- String fromCurrency, String toCurrency, double amount, ConversionResult? currentResult, List<RateHistoryPoint> rateHistory, List<ConversionResult> conversionHistory, Status convertStatus, Status historyStatus, Status saveStatus
+ String fromCurrency, String toCurrency, double amount, ConversionResult? currentResult, List<RateHistoryPoint> rateHistory, List<ConversionResult> conversionHistory, Status convertStatus, Status historyStatus, Status saveStatus, RateSourceType rateSource
 });
 
 
@@ -325,7 +327,7 @@ class __$CurrencyStateCopyWithImpl<$Res>
 
 /// Create a copy of CurrencyState
 /// with the given fields replaced by the non-null parameter values.
-@override @pragma('vm:prefer-inline') $Res call({Object? fromCurrency = null,Object? toCurrency = null,Object? amount = null,Object? currentResult = freezed,Object? rateHistory = null,Object? conversionHistory = null,Object? convertStatus = null,Object? historyStatus = null,Object? saveStatus = null,}) {
+@override @pragma('vm:prefer-inline') $Res call({Object? fromCurrency = null,Object? toCurrency = null,Object? amount = null,Object? currentResult = freezed,Object? rateHistory = null,Object? conversionHistory = null,Object? convertStatus = null,Object? historyStatus = null,Object? saveStatus = null,Object? rateSource = null,}) {
   return _then(_CurrencyState(
 fromCurrency: null == fromCurrency ? _self.fromCurrency : fromCurrency // ignore: cast_nullable_to_non_nullable
 as String,toCurrency: null == toCurrency ? _self.toCurrency : toCurrency // ignore: cast_nullable_to_non_nullable
@@ -336,7 +338,8 @@ as List<RateHistoryPoint>,conversionHistory: null == conversionHistory ? _self._
 as List<ConversionResult>,convertStatus: null == convertStatus ? _self.convertStatus : convertStatus // ignore: cast_nullable_to_non_nullable
 as Status,historyStatus: null == historyStatus ? _self.historyStatus : historyStatus // ignore: cast_nullable_to_non_nullable
 as Status,saveStatus: null == saveStatus ? _self.saveStatus : saveStatus // ignore: cast_nullable_to_non_nullable
-as Status,
+as Status,rateSource: null == rateSource ? _self.rateSource : rateSource // ignore: cast_nullable_to_non_nullable
+as RateSourceType,
   ));
 }
 

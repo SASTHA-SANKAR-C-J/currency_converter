@@ -18,6 +18,7 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
     on<LoadRateHistory>(_onLoadRateHistory);
     on<LoadHistory>(_onLoadHistory);
     on<SaveConversion>(_onSaveConversion);
+    on<UpdateRateSource>(_onUpdateRateSource);
   }
 
   void _onUpdateAmount(UpdateAmount event, Emitter<CurrencyState> emit) {
@@ -40,7 +41,17 @@ class CurrencyBloc extends Bloc<CurrencyEvent, CurrencyState> {
     ));
   }
 
-  Future<void> _onConvert(ConvertCurrency event, Emitter<CurrencyState> emit) async {
+  void _onUpdateRateSource(
+      UpdateRateSource event, Emitter<CurrencyState> emit) {
+    _repository.currentSource = event.source;
+    emit(state.copyWith(
+      rateSource: event.source,
+      currentResult: null,
+    ));
+  }
+
+  Future<void> _onConvert(
+      ConvertCurrency event, Emitter<CurrencyState> emit) async {
     if (state.amount <= 0) return;
     if (state.fromCurrency == state.toCurrency) return;
 

@@ -55,7 +55,7 @@ extension CurrencyEventPatterns on CurrencyEvent {
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( UpdateAmount value)?  updateAmount,TResult Function( UpdateFrom value)?  updateFrom,TResult Function( UpdateTo value)?  updateTo,TResult Function( SwapCurrencies value)?  swapCurrencies,TResult Function( ConvertCurrency value)?  convert,TResult Function( LoadRateHistory value)?  loadRateHistory,TResult Function( LoadHistory value)?  loadHistory,TResult Function( SaveConversion value)?  saveConversion,required TResult orElse(),}){
+@optionalTypeArgs TResult maybeMap<TResult extends Object?>({TResult Function( UpdateAmount value)?  updateAmount,TResult Function( UpdateFrom value)?  updateFrom,TResult Function( UpdateTo value)?  updateTo,TResult Function( SwapCurrencies value)?  swapCurrencies,TResult Function( ConvertCurrency value)?  convert,TResult Function( LoadRateHistory value)?  loadRateHistory,TResult Function( LoadHistory value)?  loadHistory,TResult Function( SaveConversion value)?  saveConversion,TResult Function( UpdateRateSource value)?  updateRateSource,required TResult orElse(),}){
 final _that = this;
 switch (_that) {
 case UpdateAmount() when updateAmount != null:
@@ -66,7 +66,8 @@ return swapCurrencies(_that);case ConvertCurrency() when convert != null:
 return convert(_that);case LoadRateHistory() when loadRateHistory != null:
 return loadRateHistory(_that);case LoadHistory() when loadHistory != null:
 return loadHistory(_that);case SaveConversion() when saveConversion != null:
-return saveConversion(_that);case _:
+return saveConversion(_that);case UpdateRateSource() when updateRateSource != null:
+return updateRateSource(_that);case _:
   return orElse();
 
 }
@@ -84,7 +85,7 @@ return saveConversion(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( UpdateAmount value)  updateAmount,required TResult Function( UpdateFrom value)  updateFrom,required TResult Function( UpdateTo value)  updateTo,required TResult Function( SwapCurrencies value)  swapCurrencies,required TResult Function( ConvertCurrency value)  convert,required TResult Function( LoadRateHistory value)  loadRateHistory,required TResult Function( LoadHistory value)  loadHistory,required TResult Function( SaveConversion value)  saveConversion,}){
+@optionalTypeArgs TResult map<TResult extends Object?>({required TResult Function( UpdateAmount value)  updateAmount,required TResult Function( UpdateFrom value)  updateFrom,required TResult Function( UpdateTo value)  updateTo,required TResult Function( SwapCurrencies value)  swapCurrencies,required TResult Function( ConvertCurrency value)  convert,required TResult Function( LoadRateHistory value)  loadRateHistory,required TResult Function( LoadHistory value)  loadHistory,required TResult Function( SaveConversion value)  saveConversion,required TResult Function( UpdateRateSource value)  updateRateSource,}){
 final _that = this;
 switch (_that) {
 case UpdateAmount():
@@ -95,7 +96,8 @@ return swapCurrencies(_that);case ConvertCurrency():
 return convert(_that);case LoadRateHistory():
 return loadRateHistory(_that);case LoadHistory():
 return loadHistory(_that);case SaveConversion():
-return saveConversion(_that);case _:
+return saveConversion(_that);case UpdateRateSource():
+return updateRateSource(_that);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -112,7 +114,7 @@ return saveConversion(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( UpdateAmount value)?  updateAmount,TResult? Function( UpdateFrom value)?  updateFrom,TResult? Function( UpdateTo value)?  updateTo,TResult? Function( SwapCurrencies value)?  swapCurrencies,TResult? Function( ConvertCurrency value)?  convert,TResult? Function( LoadRateHistory value)?  loadRateHistory,TResult? Function( LoadHistory value)?  loadHistory,TResult? Function( SaveConversion value)?  saveConversion,}){
+@optionalTypeArgs TResult? mapOrNull<TResult extends Object?>({TResult? Function( UpdateAmount value)?  updateAmount,TResult? Function( UpdateFrom value)?  updateFrom,TResult? Function( UpdateTo value)?  updateTo,TResult? Function( SwapCurrencies value)?  swapCurrencies,TResult? Function( ConvertCurrency value)?  convert,TResult? Function( LoadRateHistory value)?  loadRateHistory,TResult? Function( LoadHistory value)?  loadHistory,TResult? Function( SaveConversion value)?  saveConversion,TResult? Function( UpdateRateSource value)?  updateRateSource,}){
 final _that = this;
 switch (_that) {
 case UpdateAmount() when updateAmount != null:
@@ -123,7 +125,8 @@ return swapCurrencies(_that);case ConvertCurrency() when convert != null:
 return convert(_that);case LoadRateHistory() when loadRateHistory != null:
 return loadRateHistory(_that);case LoadHistory() when loadHistory != null:
 return loadHistory(_that);case SaveConversion() when saveConversion != null:
-return saveConversion(_that);case _:
+return saveConversion(_that);case UpdateRateSource() when updateRateSource != null:
+return updateRateSource(_that);case _:
   return null;
 
 }
@@ -140,7 +143,7 @@ return saveConversion(_that);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double amount)?  updateAmount,TResult Function( String currency)?  updateFrom,TResult Function( String currency)?  updateTo,TResult Function()?  swapCurrencies,TResult Function()?  convert,TResult Function( int days)?  loadRateHistory,TResult Function()?  loadHistory,TResult Function( ConversionResult result)?  saveConversion,required TResult orElse(),}) {final _that = this;
+@optionalTypeArgs TResult maybeWhen<TResult extends Object?>({TResult Function( double amount)?  updateAmount,TResult Function( String currency)?  updateFrom,TResult Function( String currency)?  updateTo,TResult Function()?  swapCurrencies,TResult Function()?  convert,TResult Function( int days)?  loadRateHistory,TResult Function()?  loadHistory,TResult Function( ConversionResult result)?  saveConversion,TResult Function( RateSourceType source)?  updateRateSource,required TResult orElse(),}) {final _that = this;
 switch (_that) {
 case UpdateAmount() when updateAmount != null:
 return updateAmount(_that.amount);case UpdateFrom() when updateFrom != null:
@@ -150,7 +153,8 @@ return swapCurrencies();case ConvertCurrency() when convert != null:
 return convert();case LoadRateHistory() when loadRateHistory != null:
 return loadRateHistory(_that.days);case LoadHistory() when loadHistory != null:
 return loadHistory();case SaveConversion() when saveConversion != null:
-return saveConversion(_that.result);case _:
+return saveConversion(_that.result);case UpdateRateSource() when updateRateSource != null:
+return updateRateSource(_that.source);case _:
   return orElse();
 
 }
@@ -168,7 +172,7 @@ return saveConversion(_that.result);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double amount)  updateAmount,required TResult Function( String currency)  updateFrom,required TResult Function( String currency)  updateTo,required TResult Function()  swapCurrencies,required TResult Function()  convert,required TResult Function( int days)  loadRateHistory,required TResult Function()  loadHistory,required TResult Function( ConversionResult result)  saveConversion,}) {final _that = this;
+@optionalTypeArgs TResult when<TResult extends Object?>({required TResult Function( double amount)  updateAmount,required TResult Function( String currency)  updateFrom,required TResult Function( String currency)  updateTo,required TResult Function()  swapCurrencies,required TResult Function()  convert,required TResult Function( int days)  loadRateHistory,required TResult Function()  loadHistory,required TResult Function( ConversionResult result)  saveConversion,required TResult Function( RateSourceType source)  updateRateSource,}) {final _that = this;
 switch (_that) {
 case UpdateAmount():
 return updateAmount(_that.amount);case UpdateFrom():
@@ -178,7 +182,8 @@ return swapCurrencies();case ConvertCurrency():
 return convert();case LoadRateHistory():
 return loadRateHistory(_that.days);case LoadHistory():
 return loadHistory();case SaveConversion():
-return saveConversion(_that.result);case _:
+return saveConversion(_that.result);case UpdateRateSource():
+return updateRateSource(_that.source);case _:
   throw StateError('Unexpected subclass');
 
 }
@@ -195,7 +200,7 @@ return saveConversion(_that.result);case _:
 /// }
 /// ```
 
-@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double amount)?  updateAmount,TResult? Function( String currency)?  updateFrom,TResult? Function( String currency)?  updateTo,TResult? Function()?  swapCurrencies,TResult? Function()?  convert,TResult? Function( int days)?  loadRateHistory,TResult? Function()?  loadHistory,TResult? Function( ConversionResult result)?  saveConversion,}) {final _that = this;
+@optionalTypeArgs TResult? whenOrNull<TResult extends Object?>({TResult? Function( double amount)?  updateAmount,TResult? Function( String currency)?  updateFrom,TResult? Function( String currency)?  updateTo,TResult? Function()?  swapCurrencies,TResult? Function()?  convert,TResult? Function( int days)?  loadRateHistory,TResult? Function()?  loadHistory,TResult? Function( ConversionResult result)?  saveConversion,TResult? Function( RateSourceType source)?  updateRateSource,}) {final _that = this;
 switch (_that) {
 case UpdateAmount() when updateAmount != null:
 return updateAmount(_that.amount);case UpdateFrom() when updateFrom != null:
@@ -205,7 +210,8 @@ return swapCurrencies();case ConvertCurrency() when convert != null:
 return convert();case LoadRateHistory() when loadRateHistory != null:
 return loadRateHistory(_that.days);case LoadHistory() when loadHistory != null:
 return loadHistory();case SaveConversion() when saveConversion != null:
-return saveConversion(_that.result);case _:
+return saveConversion(_that.result);case UpdateRateSource() when updateRateSource != null:
+return updateRateSource(_that.source);case _:
   return null;
 
 }
@@ -646,6 +652,72 @@ $ConversionResultCopyWith<$Res> get result {
     return _then(_self.copyWith(result: value));
   });
 }
+}
+
+/// @nodoc
+
+
+class UpdateRateSource implements CurrencyEvent {
+  const UpdateRateSource(this.source);
+  
+
+ final  RateSourceType source;
+
+/// Create a copy of CurrencyEvent
+/// with the given fields replaced by the non-null parameter values.
+@JsonKey(includeFromJson: false, includeToJson: false)
+@pragma('vm:prefer-inline')
+$UpdateRateSourceCopyWith<UpdateRateSource> get copyWith => _$UpdateRateSourceCopyWithImpl<UpdateRateSource>(this, _$identity);
+
+
+
+@override
+bool operator ==(Object other) {
+  return identical(this, other) || (other.runtimeType == runtimeType&&other is UpdateRateSource&&(identical(other.source, source) || other.source == source));
+}
+
+
+@override
+int get hashCode => Object.hash(runtimeType,source);
+
+@override
+String toString() {
+  return 'CurrencyEvent.updateRateSource(source: $source)';
+}
+
+
+}
+
+/// @nodoc
+abstract mixin class $UpdateRateSourceCopyWith<$Res> implements $CurrencyEventCopyWith<$Res> {
+  factory $UpdateRateSourceCopyWith(UpdateRateSource value, $Res Function(UpdateRateSource) _then) = _$UpdateRateSourceCopyWithImpl;
+@useResult
+$Res call({
+ RateSourceType source
+});
+
+
+
+
+}
+/// @nodoc
+class _$UpdateRateSourceCopyWithImpl<$Res>
+    implements $UpdateRateSourceCopyWith<$Res> {
+  _$UpdateRateSourceCopyWithImpl(this._self, this._then);
+
+  final UpdateRateSource _self;
+  final $Res Function(UpdateRateSource) _then;
+
+/// Create a copy of CurrencyEvent
+/// with the given fields replaced by the non-null parameter values.
+@pragma('vm:prefer-inline') $Res call({Object? source = null,}) {
+  return _then(UpdateRateSource(
+null == source ? _self.source : source // ignore: cast_nullable_to_non_nullable
+as RateSourceType,
+  ));
+}
+
+
 }
 
 // dart format on

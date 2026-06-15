@@ -1,4 +1,5 @@
 import 'package:currency_converter/src/domain/models/conversion_result.dart';
+import 'package:currency_converter/src/domain/models/rate_source_type.dart';
 import 'package:freezed_annotation/freezed_annotation.dart';
 
 part 'currency_event.freezed.dart';
@@ -13,4 +14,5 @@ abstract class CurrencyEvent with _$CurrencyEvent {
   const factory CurrencyEvent.loadRateHistory({@Default(30) int days}) = LoadRateHistory;
   const factory CurrencyEvent.loadHistory() = LoadHistory;
   const factory CurrencyEvent.saveConversion(ConversionResult result) = SaveConversion;
+  const factory CurrencyEvent.updateRateSource(RateSourceType source) = UpdateRateSource;
 }

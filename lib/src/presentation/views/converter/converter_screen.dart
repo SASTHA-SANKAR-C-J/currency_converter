@@ -11,6 +11,7 @@ import 'package:currency_converter/src/application/currency_bloc/currency_event.
 import 'package:currency_converter/src/application/currency_bloc/currency_state.dart';
 import 'package:currency_converter/src/domain/models/conversion_result.dart';
 import 'package:currency_converter/src/domain/models/currency_info.dart';
+import 'package:currency_converter/src/domain/models/rate_source_type.dart';
 import 'package:currency_converter/src/presentation/constants/app_strings.dart';
 import 'package:currency_converter/src/presentation/views/converter/widgets/currency_picker.dart';
 import 'package:currency_converter/src/presentation/views/widgets/background_texture.dart';
@@ -179,6 +180,8 @@ class _ConverterScreenState extends State<ConverterScreen> {
             ],
           ),
           Gap(20.dp),
+          _buildSourceSelector(context, state),
+          Gap(16.dp),
           PrimaryButton(
             text: AppStrings.convert,
             onPressed: () {
@@ -278,6 +281,53 @@ class _ConverterScreenState extends State<ConverterScreen> {
           ),
         ],
       ),
+    );
+  }
+
+  Widget _buildSourceSelector(BuildContext context, CurrencyState state) {
+    return Column(
+      crossAxisAlignment: CrossAxisAlignment.start,
+      children: [
+        Text(
+          AppStrings.rateSource,
+          style: AppTypography.roundoSemiBold.copyWith(
+            fontSize: 14.sp,
+            color: AppColors.textGrey,
+          ),
+        ),
+        Gap(8.dp),
+        Row(
+          children: RateSourceType.values.map((source) {
+            final isSelected = state.rateSource == source;
+            return Expanded(
+              child: GestureDetector(
+                onTap: () => context
+                    .read<CurrencyBloc>()
+                    .add(UpdateRateSource(source)),
+                child: Container(
+                  margin: EdgeInsets.symmetric(horizontal: 4.dp),
+                  padding: EdgeInsets.symmetric(vertical: 10.dp),
+                  decoration: BoxDecoration(
+                    color: isSelected
+                        ? AppColors.primaryColor
+                        : AppColors.containerGrey,
+                    borderRadius: BorderRadius.circular(8.dp),
+                  ),
+                  child: Text(
+                    source.displayName,
+                    textAlign: TextAlign.center,
+                    style: AppTypography.roundoSemiBold.copyWith(
+                      fontSize: 12.sp,
+                      color:
+                          isSelected ? Colors.white : AppColors.textGrey,
+                    ),
+                  ),
+                ),
+              ),
+            );
+          }).toList(),
+        ),
+      ],
     );
   }
 }

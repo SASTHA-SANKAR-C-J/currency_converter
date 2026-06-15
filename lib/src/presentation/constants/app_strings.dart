@@ -23,4 +23,5 @@ class AppStrings {
   static const String noData = 'No data available';
   static const String retry = 'Retry';
   static const String offline = 'You are offline. Using cached rates.';
+  static const String rateSource = 'Rate Source';
 }
